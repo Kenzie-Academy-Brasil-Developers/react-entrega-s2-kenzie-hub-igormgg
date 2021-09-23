@@ -1,4 +1,4 @@
-.homeContainer {
+.registerContainer {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -11,9 +11,10 @@
   );
 }
 
-.homeBox {
-  height: 500px;
+.registerBox {
+  min-height: 550px;
   max-width: 500px;
+  min-width: 300px;
   background: rgba(255, 255, 255, 0.4);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(7px);
@@ -24,25 +25,18 @@
   justify-content: space-around;
   align-items: center;
   padding: 10px;
+  box-sizing: border-box;
 }
 
-.homeBox h1 {
-  font-size: calc(10px + 2vmin);
+.registerBox h1 {
+  font-size: calc(10px + 1vmin);
   font-weight: bold;
 }
 
-.homeBox h4 {
-  font-size: calc(10px + 1vmin);
-  text-align: justify;
-  text-indent: 50px;
+.registerBox button {
+  margin-top: 5px;
 }
 
-.buttonBox {
-  display: flex;
-  flex-direction: column;
-}
-
-.homeBox button {
+.backToHomeButton {
   background-color: aliceblue;
-  margin-bottom: 5px;
 }

@@ -1,6 +1,14 @@
-import { Button } from "@material-ui/core";
+import {
+  Button,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+} from "@material-ui/core";
 import { Redirect, useHistory } from "react-router";
 import { toast } from "react-toastify";
+import TechCard from "../TechCard";
+import "./styles.css";
 
 const Dashboard = ({ authenticated, setAuthenticated }) => {
   const history = useHistory();
@@ -22,9 +30,52 @@ const Dashboard = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <div>
-      <h1>dashboard</h1>
-      <Button onClick={() => logout()} variant="outlined" color="primary">
+    <div className="dashboardContainer">
+      <form id="insertTechBox">
+        <TextField
+          id="insertTechForm"
+          label="Qual tecnologia você já aprendeu?"
+          variant="filled"
+          size="medium"
+          color="primary"
+          margin="dense"
+          fullWidth
+        />
+        <div id="insertTechBox__levelButton">
+          <RadioGroup row aria-label="Nível">
+            <FormControlLabel
+              value="Iniciante"
+              control={<Radio />}
+              label="Iniciante"
+            />
+            <FormControlLabel
+              value="Intermediário"
+              control={<Radio />}
+              label="Intermediário"
+            />
+            <FormControlLabel
+              value="Avançado"
+              control={<Radio />}
+              label="Avançado"
+            />
+          </RadioGroup>
+          <Button variant="contained">Cadastrar tecnologia</Button>
+        </div>
+      </form>
+      <div id="TechCardsBox">
+        <TechCard />
+        <TechCard />
+        <TechCard />
+        <TechCard />
+        <TechCard />
+        <TechCard />
+      </div>
+      <Button
+        id="logoutButton"
+        onClick={() => logout()}
+        variant="outlined"
+        color="primary"
+      >
         Sair da conta
       </Button>
     </div>

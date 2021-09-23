@@ -27,7 +27,7 @@ const Home = () => {
             que ele aprendeu, e está aprendendo, e seus trabalhos também.
           </h4>
         </div>
-        <div id="buttonBox">
+        <div className="buttonBox">
           <Button onClick={() => redirectTo("/login")} variant="outlined">
             Login
           </Button>

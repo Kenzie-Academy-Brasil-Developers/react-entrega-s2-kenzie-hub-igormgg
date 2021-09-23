@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "../../services/api";
 import { toast } from "react-toastify";
+import "./styles.css";
 
 const Login = ({ authenticated, setAuthenticated }) => {
   const history = useHistory();
@@ -49,42 +50,50 @@ const Login = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleForm)}>
-      <div>
-        <TextField
-          {...register("email")}
-          error={!!errors.email}
-          helperText={errors.email?.message}
-          label="Digite seu email"
-          variant="standard"
-          size="small"
-          color="primary"
-          margin="dense"
-        />
-      </div>
-      <div>
-        <TextField
-          {...register("password")}
-          error={!!errors.password}
-          helperText={errors.password?.message}
-          label="Digite sua senha"
-          variant="standard"
-          size="small"
-          color="primary"
-          margin="dense"
-        />
-      </div>
-      <Button
-        onClick={() => redirectTo("/")}
-        variant="outlined"
-        color="primary"
-      >
-        Página inicial
-      </Button>
-      <Button type="submit" variant="contained" color="success">
-        Login
-      </Button>
-    </form>
+    <div className="loginContainer">
+      <form className="loginBox" onSubmit={handleSubmit(handleForm)}>
+        <h1>Login</h1>
+        <div>
+          <TextField
+            {...register("email")}
+            error={!!errors.email}
+            helperText={errors.email?.message}
+            label="Digite seu email"
+            variant="standard"
+            size="small"
+            color="primary"
+            margin="dense"
+            sx={{ width: "270px" }}
+          />
+        </div>
+        <div>
+          <TextField
+            {...register("password")}
+            error={!!errors.password}
+            helperText={errors.password?.message}
+            label="Digite sua senha"
+            variant="standard"
+            size="small"
+            color="primary"
+            margin="dense"
+            sx={{ width: "270px" }}
+          />
+        </div>
+        <div className="buttonBox">
+          <Button type="submit" variant="contained" color="success">
+            Login
+          </Button>
+          <Button
+            onClick={() => redirectTo("/")}
+            variant="outlined"
+            color="primary"
+            className="backToHomeButton"
+          >
+            Página inicial
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 };
 

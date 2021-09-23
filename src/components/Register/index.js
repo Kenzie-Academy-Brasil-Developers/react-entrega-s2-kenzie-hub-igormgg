@@ -5,6 +5,7 @@ import { Redirect, useHistory } from "react-router";
 import * as yup from "yup";
 import api from "../../services/api";
 import { toast } from "react-toastify";
+import "./styles.css";
 
 const Register = ({ authenticated }) => {
   const history = useHistory();
@@ -70,102 +71,115 @@ const Register = ({ authenticated }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleForm)}>
-      <div>
-        <TextField
-          {...register("email")}
-          error={!!errors.email}
-          helperText={errors.email?.message}
-          label="Email de preferência"
-          variant="standard"
-          size="small"
-          color="success"
-          margin="dense"
-        />
-      </div>
-      <div>
-        <TextField
-          {...register("password")}
-          error={!!errors.password}
-          helperText={errors.password?.message}
-          label="Crie uma senha forte"
-          variant="standard"
-          size="small"
-          color="success"
-          margin="dense"
-        />
-      </div>
-      <div>
-        <TextField
-          {...register("passConfirm")}
-          error={!!errors.passConfirm}
-          helperText={errors.passConfirm?.message}
-          label="Confirme sua senha"
-          variant="standard"
-          size="small"
-          color="success"
-          margin="dense"
-        />
-      </div>
-      <div>
-        <TextField
-          {...register("name")}
-          error={!!errors.name}
-          helperText={errors.name?.message}
-          label="Qual é o seu nome?"
-          variant="standard"
-          size="small"
-          color="success"
-          margin="dense"
-        />
-      </div>
-      <div>
-        <TextField
-          {...register("bio")}
-          error={!!errors.bio}
-          helperText={errors.bio?.message}
-          label="Digite algo sobre você"
-          variant="standard"
-          size="small"
-          color="success"
-          margin="dense"
-        />
-      </div>
-      <div>
-        <TextField
-          {...register("contact")}
-          error={!!errors.contact}
-          helperText={errors.contact?.message}
-          label="Seu contato"
-          variant="standard"
-          size="small"
-          color="success"
-          margin="dense"
-        />
-      </div>
-      <div>
-        <TextField
-          {...register("course_module")}
-          error={!!errors.course_module}
-          helperText={errors.course_module?.message}
-          label="Qual módulo você cursa?"
-          variant="standard"
-          size="small"
-          color="success"
-          margin="dense"
-        />
-      </div>
-      <Button
-        onClick={() => redirectTo("/")}
-        variant="outlined"
-        color="primary"
-      >
-        Página inicial
-      </Button>
-      <Button type="submit" variant="contained" color="success">
-        Cadastrar
-      </Button>
-    </form>
+    <div className="registerContainer">
+      <form className="registerBox" onSubmit={handleSubmit(handleForm)}>
+        <h1>Criar Cadastro</h1>
+        <div>
+          <TextField
+            {...register("email")}
+            error={!!errors.email}
+            helperText={errors.email?.message}
+            label="Email de preferência"
+            variant="standard"
+            size="small"
+            color="success"
+            margin="dense"
+            sx={{ width: "270px" }}
+          />
+        </div>
+        <div>
+          <TextField
+            {...register("password")}
+            error={!!errors.password}
+            helperText={errors.password?.message}
+            label="Crie uma senha forte"
+            variant="standard"
+            size="small"
+            color="success"
+            margin="dense"
+            sx={{ width: "270px" }}
+          />
+        </div>
+        <div>
+          <TextField
+            {...register("passConfirm")}
+            error={!!errors.passConfirm}
+            helperText={errors.passConfirm?.message}
+            label="Confirme sua senha"
+            variant="standard"
+            size="small"
+            color="success"
+            margin="dense"
+            sx={{ width: "270px" }}
+          />
+        </div>
+        <div>
+          <TextField
+            {...register("name")}
+            error={!!errors.name}
+            helperText={errors.name?.message}
+            label="Qual é o seu nome?"
+            variant="standard"
+            size="small"
+            color="success"
+            margin="dense"
+            sx={{ width: "270px" }}
+          />
+        </div>
+        <div>
+          <TextField
+            {...register("bio")}
+            error={!!errors.bio}
+            helperText={errors.bio?.message}
+            label="Digite algo sobre você"
+            variant="standard"
+            size="small"
+            color="success"
+            margin="dense"
+            sx={{ width: "270px" }}
+          />
+        </div>
+        <div>
+          <TextField
+            {...register("contact")}
+            error={!!errors.contact}
+            helperText={errors.contact?.message}
+            label="Seu contato"
+            variant="standard"
+            size="small"
+            color="success"
+            margin="dense"
+            sx={{ width: "270px" }}
+          />
+        </div>
+        <div>
+          <TextField
+            {...register("course_module")}
+            error={!!errors.course_module}
+            helperText={errors.course_module?.message}
+            label="Qual módulo você cursa?"
+            variant="standard"
+            size="small"
+            color="success"
+            margin="dense"
+            sx={{ width: "270px" }}
+          />
+        </div>
+        <div className="buttonBox">
+          <Button type="submit" variant="contained" color="success">
+            Cadastrar
+          </Button>
+          <Button
+            onClick={() => redirectTo("/")}
+            variant="outlined"
+            color="primary"
+            className="backToHomeButton"
+          >
+            Página inicial
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 };
 

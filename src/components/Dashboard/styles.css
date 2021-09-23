@@ -1,0 +1,51 @@
+.dashboardContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  background: linear-gradient(
+    0deg,
+    rgba(26, 255, 0, 1) 0%,
+    rgba(109, 212, 161, 1) 50%,
+    rgba(0, 211, 255, 1) 100%
+  );
+}
+
+#insertTechBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#insertTechBox__levelButton {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#insertTechForm {
+  height: 50%;
+  background-color: rgb(179, 250, 255);
+}
+
+#insertTechBox button {
+  box-sizing: border-box;
+  font-size: calc(5px + 1vmin);
+}
+
+#TechCardsBox {
+  width: 100%;
+  height: 80%;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#logoutButton {
+  background-color: aliceblue;
+}

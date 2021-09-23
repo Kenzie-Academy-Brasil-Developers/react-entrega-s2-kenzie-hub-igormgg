@@ -1,0 +1,23 @@
+.techCardBox {
+  width: 30%;
+  height: 200px;
+  background: rgba(80, 80, 80, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(7px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: aliceblue;
+  font-size: calc(10px + 1vmin);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+  box-sizing: border-box;
+}
+
+.techCardBox button {
+  font-size: calc(5px + 1vmin);
+  margin-top: 20px;
+}
