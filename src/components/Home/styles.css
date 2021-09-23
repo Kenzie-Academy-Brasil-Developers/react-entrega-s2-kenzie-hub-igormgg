@@ -1,0 +1,48 @@
+.homeContainer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    0deg,
+    rgba(26, 255, 0, 1) 0%,
+    rgba(109, 212, 161, 1) 50%,
+    rgba(0, 211, 255, 1) 100%
+  );
+}
+
+.homeBox {
+  height: 500px;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(7px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.homeBox h1 {
+  font-size: calc(10px + 2vmin);
+  font-weight: bold;
+}
+
+.homeBox h4 {
+  font-size: calc(10px + 1vmin);
+  text-align: justify;
+  text-indent: 50px;
+}
+
+#buttonBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.homeBox button {
+  background-color: aliceblue;
+  margin-bottom: 5px;
+}

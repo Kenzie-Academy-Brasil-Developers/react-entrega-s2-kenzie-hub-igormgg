@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router";
 import Dashboard from "../components/Dashboard";
 import Home from "../components/Home";
@@ -5,19 +6,34 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 
 const Routes = () => {
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const localToken = JSON.parse(localStorage.getItem("token"));
+    if (localToken) {
+      setAuthenticated(true);
+    }
+  }, [authenticated]);
+
   return (
     <Switch>
       <Route exact path="/">
         <Home />
       </Route>
       <Route exact path="/register">
-        <Register />
+        <Register authenticated={authenticated} />
       </Route>
       <Route exact path="/login">
-        <Login />
+        <Login
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        />
       </Route>
       <Route exact path="/dashboard">
-        <Dashboard />
+        <Dashboard
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        />
       </Route>
     </Switch>
   );

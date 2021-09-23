@@ -1,10 +1,12 @@
 import { Button, TextField } from "@material-ui/core";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import api from "../../services/api";
+import { toast } from "react-toastify";
 
-const Login = () => {
+const Login = ({ authenticated, setAuthenticated }) => {
   const history = useHistory();
 
   const schema = yup.object().shape({
@@ -28,8 +30,23 @@ const Login = () => {
   });
 
   const handleForm = (data) => {
-    console.log(data);
+    api
+      .post("/sessions", data)
+      .then((response) => {
+        // console.log(response);
+        toast.success(`${response.data.user.name} entrou no KenzieHub!`);
+        localStorage.clear();
+        localStorage.setItem("token", JSON.stringify(response.data.token));
+        setAuthenticated(true);
+        history.push("/dashboard");
+      })
+      .catch(() => toast.error("Oh não, sua autorização foi negada!"));
   };
+
+  if (authenticated) {
+    toast.info("Você já está logado!");
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <form onSubmit={handleSubmit(handleForm)}>
@@ -57,8 +74,16 @@ const Login = () => {
           margin="dense"
         />
       </div>
-      <Button onClick={() => redirectTo("/")}>Página inicial</Button>
-      <Button type="submit">Login</Button>
+      <Button
+        onClick={() => redirectTo("/")}
+        variant="outlined"
+        color="primary"
+      >
+        Página inicial
+      </Button>
+      <Button type="submit" variant="contained" color="success">
+        Login
+      </Button>
     </form>
   );
 };

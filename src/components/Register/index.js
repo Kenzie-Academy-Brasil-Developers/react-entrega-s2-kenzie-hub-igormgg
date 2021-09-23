@@ -1,10 +1,12 @@
 import { Button, TextField } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import * as yup from "yup";
+import api from "../../services/api";
+import { toast } from "react-toastify";
 
-const Register = () => {
+const Register = ({ authenticated }) => {
   const history = useHistory();
 
   const schema = yup.object().shape({
@@ -31,11 +33,9 @@ const Register = () => {
       .required("*Obrigatório")
       .matches("^[A-Z a-z]+$", "Isso não parece um nome"),
     bio: yup.string().required("*Obrigatório"),
-    phone: yup
-      .string()
-      .required("*Obrigatório")
-      .matches("^([0-9])+$", "Isso não parece um número"),
-    module: yup.string().required("*Obrigatório"),
+    contact: yup.string().required("*Obrigatório"),
+    // .matches("^([0-9])+$", "Isso não parece um número"),
+    course_module: yup.string().required("*Obrigatório"),
   });
 
   const redirectTo = (path) => {
@@ -51,8 +51,23 @@ const Register = () => {
   });
 
   const handleForm = (data) => {
-    console.log(data);
+    api
+      .post("/users", data)
+      .then((response) => {
+        console.log(response);
+        toast.success(
+          `Seja bem vindo ao KenzieHub, ${response.data.name}. Faça seu Login para continuar.`
+        );
+        localStorage.clear();
+        history.push("/login");
+      })
+      .catch(() => toast.error("Ops! Não foi possível criar sua conta."));
   };
+
+  if (authenticated) {
+    toast.info("Você já está logado!");
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <form onSubmit={handleSubmit(handleForm)}>
@@ -118,10 +133,10 @@ const Register = () => {
       </div>
       <div>
         <TextField
-          {...register("phone")}
-          error={!!errors.phone}
-          helperText={errors.phone?.message}
-          label="Seu número de telefone"
+          {...register("contact")}
+          error={!!errors.contact}
+          helperText={errors.contact?.message}
+          label="Seu contato"
           variant="standard"
           size="small"
           color="success"
@@ -130,9 +145,9 @@ const Register = () => {
       </div>
       <div>
         <TextField
-          {...register("module")}
-          error={!!errors.module}
-          helperText={errors.module?.message}
+          {...register("course_module")}
+          error={!!errors.course_module}
+          helperText={errors.course_module?.message}
           label="Qual módulo você cursa?"
           variant="standard"
           size="small"
@@ -140,8 +155,16 @@ const Register = () => {
           margin="dense"
         />
       </div>
-      <Button onClick={() => redirectTo("/")}>Página inicial</Button>
-      <Button type="submit">Cadastrar</Button>
+      <Button
+        onClick={() => redirectTo("/")}
+        variant="outlined"
+        color="primary"
+      >
+        Página inicial
+      </Button>
+      <Button type="submit" variant="contained" color="success">
+        Cadastrar
+      </Button>
     </form>
   );
 };
