@@ -6,7 +6,6 @@ import * as yup from "yup";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import "./styles.css";
-import { useEffect, useState } from "react";
 
 const Login = ({ authenticated, setAuthenticated, setTechs, setUserID }) => {
   const history = useHistory();
