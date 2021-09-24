@@ -122,13 +122,14 @@ const Dashboard = ({
         </div>
       </form>
       <div id="TechCardsBox">
-        {techs.map((tech) => (
-          <TechCard
-            title={tech.title}
-            status={tech.status}
-            onClick={() => handleDelete(tech.id)}
-          />
-        ))}
+        {techs &&
+          techs.map((tech) => (
+            <TechCard
+              title={tech.title}
+              status={tech.status}
+              onClick={() => handleDelete(tech.id)}
+            />
+          ))}
       </div>
       <Button
         id="logoutButton"

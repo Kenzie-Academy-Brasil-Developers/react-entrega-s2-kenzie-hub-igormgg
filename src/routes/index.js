@@ -8,7 +8,7 @@ import Register from "../components/Register";
 const Routes = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [userID, setUserID] = useState("");
-  const [techs, setTechs] = useState([]);
+  const [techs, setTechs] = useState("");
 
   useEffect(() => {
     const localToken = JSON.parse(localStorage.getItem("token"));
