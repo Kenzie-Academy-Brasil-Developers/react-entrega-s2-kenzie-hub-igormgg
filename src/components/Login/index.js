@@ -6,8 +6,9 @@ import * as yup from "yup";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import "./styles.css";
+import { useEffect, useState } from "react";
 
-const Login = ({ authenticated, setAuthenticated }) => {
+const Login = ({ authenticated, setAuthenticated, setTechs, setUserID }) => {
   const history = useHistory();
 
   const schema = yup.object().shape({
@@ -34,11 +35,12 @@ const Login = ({ authenticated, setAuthenticated }) => {
     api
       .post("/sessions", data)
       .then((response) => {
-        // console.log(response);
         toast.success(`${response.data.user.name} entrou no KenzieHub!`);
         localStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.token));
         setAuthenticated(true);
+        setTechs(response.data.user.techs);
+        setUserID(response.data.user.id);
         history.push("/dashboard");
       })
       .catch(() => toast.error("Oh não, sua autorização foi negada!"));
@@ -76,6 +78,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
             size="small"
             color="primary"
             margin="dense"
+            type="password"
             sx={{ width: "270px" }}
           />
         </div>

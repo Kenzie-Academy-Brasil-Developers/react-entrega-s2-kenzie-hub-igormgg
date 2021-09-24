@@ -55,7 +55,6 @@ const Register = ({ authenticated }) => {
     api
       .post("/users", data)
       .then((response) => {
-        console.log(response);
         toast.success(
           `Seja bem vindo ao KenzieHub, ${response.data.name}. Faça seu Login para continuar.`
         );
@@ -97,6 +96,7 @@ const Register = ({ authenticated }) => {
             size="small"
             color="success"
             margin="dense"
+            type="password"
             sx={{ width: "270px" }}
           />
         </div>
@@ -110,6 +110,7 @@ const Register = ({ authenticated }) => {
             size="small"
             color="success"
             margin="dense"
+            type="password"
             sx={{ width: "270px" }}
           />
         </div>
